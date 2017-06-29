@@ -19,9 +19,9 @@ ______________________________________________________________________________
 save a seat. watch something cool.
 
 ## Build
-build using `make`:
+to setup and build, use `make`:
 
-`make build`
+`make`
 
 ## Run
 There are various options to run. VenYou takes a json string from the command line to do various actions.
