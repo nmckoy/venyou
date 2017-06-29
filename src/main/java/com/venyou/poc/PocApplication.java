@@ -73,8 +73,13 @@ public class PocApplication {
     }
 
     public static void doActions(JsonObject actions, Venue venue) {
-        Integer row = actions.get("row").getAsInt();
-        Integer column = actions.get("column").getAsInt();
+        String verb = actions.get("verb").getAsString();
+        Integer row = 0;
+        Integer column = 0;
+        if (!"show".equalsIgnoreCase(verb)) {
+            row = actions.get("row").getAsInt();
+            column = actions.get("column").getAsInt();
+        }
 
         switch (actions.get("verb").getAsString()){
             case "reserve":
@@ -111,9 +116,10 @@ public class PocApplication {
         try {
             JsonObject input_venue = json_input.getAsJsonObject("venue");
             Venue my_venue = loadVenue(input_venue);
+
             if (my_venue != null) {
                 try {
-                    JsonObject action = json_input.getAsJsonObject("action");
+                    JsonObject action = json_input.getAsJsonObject("action").getAsJsonObject();
                     doActions(action, my_venue);
                 } catch (NullPointerException e) {
                     System.out.println("no action provided");

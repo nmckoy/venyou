@@ -26,16 +26,21 @@ public class Venue {
                 local_mapping.get(i).put(j, false);
             }
         }
-        this.mapping = local_mapping;
+        mapping = local_mapping;
     }
 
     public void seat(Integer row, Integer column, Boolean meat) {
-        HashMap new_mapping = this.mapping;
-        HashMap changed_row = (HashMap<Integer, Boolean>) new_mapping.get(1);
-        changed_row.put(column, meat);
-        new_mapping.put(row, changed_row);
+        if (row <= rows | column <= columns) {
+            HashMap new_mapping = this.mapping;
+            HashMap changed_row = (HashMap<Integer, Boolean>) new_mapping.get(1);
+            changed_row.put(column, meat);
+            new_mapping.put(row, changed_row);
 
-        this.mapping = new_mapping;
+            mapping = new_mapping;
+        } else {
+            System.out.println("that seat does not exist; use show to find available seats");
+        }
+
     }
 
     public void show() {
