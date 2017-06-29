@@ -112,15 +112,18 @@ public class PocApplication {
             JsonObject input_venue = json_input.getAsJsonObject("venue");
             Venue my_venue = loadVenue(input_venue);
             if (my_venue != null) {
-                JsonObject action = json_input.getAsJsonObject("action");
-                System.out.println(action);
-                doActions(action, my_venue);
+                try {
+                    JsonObject action = json_input.getAsJsonObject("action");
+                    doActions(action, my_venue);
+                } catch (NullPointerException e) {
+                    System.out.println("no action provided");
+                }
             } else {
                 throw new Exception("I have no venue to do work on");
             }
         } catch (NullPointerException e) {
             // ehh i can probably catch more stuff and make it pretty
-            throw new Exception("venue object must exist; action object is optional");
+            System.out.println("venue object must be provided");
         }
 //		SpringApplication.run(PocApplication.class, args);
 	}
