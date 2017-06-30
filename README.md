@@ -15,7 +15,7 @@
 ______________________________________________________________________________
 
 # VenYou!
-(name already exists :/)
+(name already exists 😕)
 save a seat. watch something cool.
 
 ## Build
